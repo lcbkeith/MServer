@@ -1,25 +1,25 @@
 #include "AsioServerApp.h"
 
-AsioServerApp::AsioServerApp():
-	m_ioService(nullptr),
-	m_accecptor(nullptr)
-{
-	m_ioService = new boost::asio::io_service;
-}
-
-AsioServerApp::~AsioServerApp()
-{
-	if (m_ioService)
-	{
-		delete m_ioService;
-		m_ioService = nullptr;
-	}
-	if (m_accecptor)
-	{
-		delete m_accecptor;
-		m_accecptor = nullptr;
-	}
-}
+// AsioServerApp::AsioServerApp()
+// 	:m_ioService(nullptr),
+// 	m_accecptor(nullptr)
+// {
+// 	m_ioService = new boost::asio::io_service;
+// }
+// 
+// AsioServerApp::~AsioServerApp()
+// {
+// 	if (m_ioService)
+// 	{
+// 		delete m_ioService;
+// 		m_ioService = nullptr;
+// 	}
+// 	if (m_accecptor)
+// 	{
+// 		delete m_accecptor;
+// 		m_accecptor = nullptr;
+// 	}
+// }
 
 void AsioServerApp::AppStart(int port, int threadCount)
 {

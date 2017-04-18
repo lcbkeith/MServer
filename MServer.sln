@@ -8,8 +8,14 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameServer", "src\GameServer\GameServer.vcxproj", "{1273CD2C-8470-422F-AC8B-3E7B87142C40}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GatewayServer", "src\GatewayServer\GatewayServer.vcxproj", "{0D9E9DFD-190D-401F-967D-1A2511579D26}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7C5AB281-07A2-48B2-A704-CB4C51092435} = {7C5AB281-07A2-48B2-A704-CB4C51092435}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerBase", "src\ServerBase\ServerBase.vcxproj", "{7C5AB281-07A2-48B2-A704-CB4C51092435}"
+	ProjectSection(ProjectDependencies) = postProject
+		{17B83AB9-6A71-42F2-B5BE-4221CD699E2F} = {17B83AB9-6A71-42F2-B5BE-4221CD699E2F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

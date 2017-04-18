@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{17B83AB9-6A71-42F2-B5BE-4221CD699E2F}</ProjectGuid>
+    <ProjectGuid>{F109BBC9-8143-46C7-AFB7-5F5CB95DC274}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>NetWork</RootNamespace>
+    <RootNamespace>LoginServer</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -71,8 +71,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(BOOST_ROOT);$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST_ROOT)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -148,18 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AsioServerApp.h" />
-    <ClInclude Include="AsioTcpConnection.h" />
-    <ClInclude Include="IClient.h" />
-    <ClInclude Include="includes.h" />
-    <ClInclude Include="NetMessage.h" />
-    <ClInclude Include="TypeDefines.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AsioServerApp.cpp" />
-    <ClCompile Include="AsioTcpConnection.cpp" />
-    <ClCompile Include="IClient.cpp" />
-    <ClCompile Include="NetMessage.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

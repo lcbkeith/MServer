@@ -18,13 +18,7 @@
     <ClInclude Include="includes.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="IServer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="NetMessage.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="TCPAcceptor.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="TypeDefines.h">
@@ -41,13 +35,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IServer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="NetMessage.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="TCPAcceptor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="AsioServerApp.cpp">
