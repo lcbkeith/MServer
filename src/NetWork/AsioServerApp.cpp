@@ -28,7 +28,7 @@ void AsioServerApp::AppStart(int port, int threadCount)
 		m_accecptor = new tcp::acceptor(*m_ioService, tcp::endpoint(tcp::v4(), port));
 	}
 	StartAccept();
-	for (unsigned int i = 0; i < threadCount; i++)
+	for (int i = 0; i < threadCount; i++)
 	{
 		boost::thread* t = new boost::thread(boost::bind(&boost::asio::io_service::run, m_ioService));
 		m_workThreads.push_back(t);
@@ -59,6 +59,7 @@ void AsioServerApp::HandleAccept(AsioTcpConnection* conn, const boost::system::e
 	{
 		//Set event funcs;
 		std::cout << "HandleAccept " << conn->GetSocket().remote_endpoint().address() << std::endl;
+		m_connList.push_back(conn);
 	}
 	StartAccept();
 }
