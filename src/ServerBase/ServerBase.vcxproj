@@ -148,9 +148,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="IClient.h" />
     <ClInclude Include="IServer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="IClient.cpp" />
     <ClCompile Include="IServer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

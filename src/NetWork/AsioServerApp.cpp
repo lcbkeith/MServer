@@ -1,31 +1,37 @@
 #include "AsioServerApp.h"
 
-// AsioServerApp::AsioServerApp()
-// 	:m_ioService(nullptr),
-// 	m_accecptor(nullptr)
-// {
-// 	m_ioService = new boost::asio::io_service;
-// }
-// 
-// AsioServerApp::~AsioServerApp()
-// {
-// 	if (m_ioService)
-// 	{
-// 		delete m_ioService;
-// 		m_ioService = nullptr;
-// 	}
-// 	if (m_accecptor)
-// 	{
-// 		delete m_accecptor;
-// 		m_accecptor = nullptr;
-// 	}
-// }
+AsioServerApp::AsioServerApp()
+	:m_ioService(nullptr),
+	m_accecptor(nullptr)
+{
+	m_ioService = new boost::asio::io_service;
+}
+
+AsioServerApp::~AsioServerApp()
+{
+	if (m_ioService)
+	{
+		delete m_ioService;
+		m_ioService = nullptr;
+	}
+	if (m_accecptor)
+	{
+		delete m_accecptor;
+		m_accecptor = nullptr;
+	}
+}
 
 void AsioServerApp::AppStart(int port, int threadCount)
 {
 	if (!m_accecptor)
 	{
 		m_accecptor = new tcp::acceptor(*m_ioService, tcp::endpoint(tcp::v4(), port));
+	}
+	StartAccept();
+	for (unsigned int i = 0; i < threadCount; i++)
+	{
+		boost::thread* t = new boost::thread(boost::bind(&boost::asio::io_service::run, m_ioService));
+		m_workThreads.push_back(t);
 	}
 }
 
@@ -55,4 +61,12 @@ void AsioServerApp::HandleAccept(AsioTcpConnection* conn, const boost::system::e
 		std::cout << "HandleAccept " << conn->GetSocket().remote_endpoint().address() << std::endl;
 	}
 	StartAccept();
+}
+
+void AsioServerApp::Tick()
+{
+	if (m_workThreads.empty() && m_ioService)
+	{
+		m_ioService->poll_one();
+	}
 }

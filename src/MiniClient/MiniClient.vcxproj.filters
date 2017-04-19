@@ -15,37 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="NetMessage.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeDefines.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="AsioServerApp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="AsioTcpConnection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="AsioClientApp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniClient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NetMessage.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="AsioServerApp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="AsioTcpConnection.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="AsioClientApp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <ClInclude Include="MiniClient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
