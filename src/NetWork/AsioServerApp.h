@@ -17,10 +17,16 @@ public:
 	void StartAccept();
 	void HandleAccept(AsioTcpConnection* conn, const boost::system::error_code& err);
 	void Tick();
+
+	void SetDelegateConnected(DelegateOnConnected func);
+	void SetDelegateConnClosed(DelegateOnConnClosed func);
 private:
 	io_service*							m_ioService;
 	ip::tcp::acceptor*					m_accecptor;
 
 	std::vector<AsioTcpConnection*>		m_connList;
 	std::vector<boost::thread*>			m_workThreads;
+
+	DelegateOnConnected m_delegateConnected;
+	DelegateOnConnClosed m_delegateConnClosed;
 };

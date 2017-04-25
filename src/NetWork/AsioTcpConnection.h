@@ -1,14 +1,18 @@
 #pragma once
+#include "includes.h"
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
+#include <boost/function.hpp>
 using namespace boost;
 using namespace boost::asio;
+
 
 class AsioTcpConnection
 {
 public:
 	AsioTcpConnection(io_service& io_service);
 	~AsioTcpConnection();
+	int64 GetID() { return m_connID; }
 
 	void Start();
 	void Update();
@@ -21,4 +25,9 @@ private:
 
 	char m_recvBuffer[4*1024];
 	int m_unHandledSize;
+	int64 m_connID;
+	static int64 m_connAllocID;
 };
+
+typedef boost::function<void(AsioTcpConnection*)> DelegateOnConnected;
+typedef boost::function<void(AsioTcpConnection*)> DelegateOnConnClosed;

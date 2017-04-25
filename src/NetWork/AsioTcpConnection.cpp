@@ -1,8 +1,9 @@
 #include "AsioTcpConnection.h"
-
+int64 AsioTcpConnection::m_connAllocID = 1024;
 AsioTcpConnection::AsioTcpConnection(io_service& io_service)
 	:m_socket(io_service)
 	, m_unHandledSize(0)
+	, m_connID(m_connAllocID++)
 {
 
 }
@@ -14,7 +15,6 @@ AsioTcpConnection::~AsioTcpConnection()
 
 void AsioTcpConnection::Start()
 {
-
 	m_socket.set_option(boost::asio::socket_base::linger(true, 0));				//如果为true，套接字会在有未发送数据的情况下挂起close()
 	m_socket.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));	//如果为true，套接字能绑定到一个已用的地址(TODO 啥意思?)
 
@@ -61,3 +61,5 @@ boost::asio::ip::tcp::socket& AsioTcpConnection::GetSocket()
 {
 	return m_socket;
 }
+
+

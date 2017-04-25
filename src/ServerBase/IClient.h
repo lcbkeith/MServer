@@ -10,6 +10,6 @@ public:
 	virtual void Tick();
 	void Start(const char* host, int port);
 protected:
-private:
 	AsioClientApp* m_clientApp;
+private:
 };

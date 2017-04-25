@@ -8,8 +8,7 @@ public:
 	virtual ~IServer();
 	virtual void Tick();
 	void Start(int port);
-
+	virtual void OnStarted();
 protected:
-private:
 	AsioServerApp* m_serverApp;
 };

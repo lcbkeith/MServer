@@ -58,8 +58,14 @@ void AsioServerApp::HandleAccept(AsioTcpConnection* conn, const boost::system::e
 	else
 	{
 		//Set event funcs;
-		std::cout << "HandleAccept " << conn->GetSocket().remote_endpoint().address() << std::endl;
+		std::cout << "HandleAccept ,thread:" << boost::this_thread::get_id()<< ",ip:" << conn->GetSocket().remote_endpoint().address() << std::endl;
 		m_connList.push_back(conn);
+		std::cout << "count" << m_connList.size() << std::endl;
+		std::cout << "------------" << std::endl;
+		if (m_delegateConnected)
+		{
+			m_delegateConnected(conn);
+		}
 	}
 	StartAccept();
 }
@@ -70,4 +76,14 @@ void AsioServerApp::Tick()
 	{
 		m_ioService->poll_one();
 	}
+}
+
+void AsioServerApp::SetDelegateConnected(DelegateOnConnected func)
+{
+	m_delegateConnected = func;
+}
+
+void AsioServerApp::SetDelegateConnClosed(DelegateOnConnClosed func)
+{
+	m_delegateConnClosed = func;
 }

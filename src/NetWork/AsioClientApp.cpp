@@ -1,14 +1,7 @@
 #include "AsioClientApp.h"
-AsioClientApp::AsioClientApp(io_service* io_svc /*= NULL*/)
-	:m_sharedSvc(true)
+AsioClientApp::AsioClientApp()
+	:m_sharedSvc(false)
 {
-	if (io_svc == nullptr)
-	{
-		m_sharedSvc = false;
-		io_svc = new io_service;
-	}
-	m_ioService = io_svc;
-	m_resolver = new ip::tcp::resolver(*m_ioService);
 }
 
 AsioClientApp::~AsioClientApp()
@@ -20,31 +13,42 @@ AsioClientApp::~AsioClientApp()
 	}
 	delete m_resolver;
 	m_resolver = nullptr;
-	delete m_socket;
-	m_socket = nullptr;
+	delete m_conn;
+	m_conn = nullptr;
 }
 
 void AsioClientApp::Start(const char* host, int port)
 {
+	if (m_ioService == nullptr)
+	{
+		m_ioService = new io_service;
+	}
+	m_resolver = new ip::tcp::resolver(*m_ioService);
 	m_query = new ip::tcp::resolver::query(host, std::to_string(port).c_str());
 	m_rsvIter = m_resolver->resolve(*m_query);
-	m_socket = new ip::tcp::socket(*m_ioService);
 
-	boost::asio::async_connect(*m_socket, m_rsvIter, boost::bind(&AsioClientApp::OnConn, this, m_socket, boost::asio::placeholders::error));
+	m_conn = new AsioTcpConnection(*m_ioService);
 
+	boost::asio::async_connect(m_conn->GetSocket(), m_rsvIter, boost::bind(&AsioClientApp::OnConn, this, m_conn, boost::asio::placeholders::error));
 	m_workThread = boost::thread(boost::bind(&io_service::run, m_ioService));
 }
 
-void AsioClientApp::OnConn(ip::tcp::socket* socket, const boost::system::error_code& err)
+void AsioClientApp::OnConn(AsioTcpConnection* conn, const boost::system::error_code& err)
 {
 	if (err)
 	{
-		boost::asio::async_connect(*m_socket, m_rsvIter,
-			boost::bind(&AsioClientApp::OnConn, this, m_socket, boost::asio::placeholders::error));
+		boost::asio::async_connect(conn->GetSocket(), m_rsvIter,
+			boost::bind(&AsioClientApp::OnConn, this, conn, boost::asio::placeholders::error));
 	}
 	else
 	{
-		std::cout << "accept" << socket->remote_endpoint().address() << std::endl;
+		std::cout << "AsioClientApp::OnConn,thread" << boost::this_thread::get_id()<< ",ip:" << conn->GetSocket().remote_endpoint().address() << std::endl;
 	}
+}
+
+void AsioClientApp::SetIOService(io_service& ioService)
+{
+	m_ioService = &ioService;
+	m_sharedSvc = true;
 }
 

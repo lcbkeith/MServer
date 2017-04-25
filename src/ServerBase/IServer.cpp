@@ -16,10 +16,17 @@ IServer::~IServer()
 
 void IServer::Tick()
 {
-	
+	m_serverApp->Tick();
 }
 
 void IServer::Start(int port)
 {
 	m_serverApp->AppStart(port, 4);
+	OnStarted();
 }
+
+void IServer::OnStarted()
+{
+
+}
+
