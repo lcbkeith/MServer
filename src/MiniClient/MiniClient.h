@@ -1,11 +1,14 @@
 #pragma once
 #include "..\ServerBase\IClient.h"
-class MiniClient : public IClient
+#include "..\ServerBase\Obj.h"
+class MiniClient : public IClient, public Obj
 {
 public:
 	MiniClient() {}
 	virtual ~MiniClient() {};
 	void SetIOService(io_service& service) { m_clientApp->SetIOService(service); }
+
+	static std::vector<MiniClient*> m_clients;
 protected:
 private:
 };

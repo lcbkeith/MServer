@@ -15,11 +15,11 @@ IClient::~IClient()
 
 void IClient::Tick()
 {
-
+	m_clientApp->Tick();
 }
 
-void IClient::Start(const char* host, int port)
+void IClient::Start(const char* host, int port, int threadCount)
 {
-	m_clientApp->Start(host, port);
+	m_clientApp->Start(host, port, threadCount);
 }
 

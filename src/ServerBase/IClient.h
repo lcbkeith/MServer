@@ -8,7 +8,7 @@ public:
 	virtual ~IClient();
 
 	virtual void Tick();
-	void Start(const char* host, int port);
+	void Start(const char* host, int port, int threadCount = 0);
 protected:
 	AsioClientApp* m_clientApp;
 private:

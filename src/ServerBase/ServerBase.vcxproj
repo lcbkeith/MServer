@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="IClient.h" />
     <ClInclude Include="IServer.h" />
+    <ClInclude Include="Obj.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IClient.cpp" />

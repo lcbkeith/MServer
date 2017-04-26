@@ -17,7 +17,7 @@ AsioClientApp::~AsioClientApp()
 	m_conn = nullptr;
 }
 
-void AsioClientApp::Start(const char* host, int port)
+void AsioClientApp::Start(const char* host, int port, int threadCount)
 {
 	if (m_ioService == nullptr)
 	{
@@ -30,7 +30,12 @@ void AsioClientApp::Start(const char* host, int port)
 	m_conn = new AsioTcpConnection(*m_ioService);
 
 	boost::asio::async_connect(m_conn->GetSocket(), m_rsvIter, boost::bind(&AsioClientApp::OnConn, this, m_conn, boost::asio::placeholders::error));
-	m_workThread = boost::thread(boost::bind(&io_service::run, m_ioService));
+
+	for (int idx = 0; idx < threadCount; idx++)
+	{
+		boost::thread* thread = new boost::thread(boost::bind(&boost::asio::io_service::run, m_ioService));
+		m_workThreads.push_back(thread);
+	}
 }
 
 void AsioClientApp::OnConn(AsioTcpConnection* conn, const boost::system::error_code& err)
@@ -50,5 +55,13 @@ void AsioClientApp::SetIOService(io_service& ioService)
 {
 	m_ioService = &ioService;
 	m_sharedSvc = true;
+}
+
+void AsioClientApp::Tick()
+{
+	if (m_workThreads.empty())
+	{
+		m_ioService->poll_one();
+	}
 }
 
