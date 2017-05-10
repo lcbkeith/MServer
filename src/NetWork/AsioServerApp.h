@@ -11,7 +11,7 @@ class AsioServerApp
 {
 public:
 	AsioServerApp();
-	virtual ~AsioServerApp();
+	~AsioServerApp();
 
 	void AppStart(int port, int threadCount);
 	void StartAccept();

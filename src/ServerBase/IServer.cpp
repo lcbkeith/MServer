@@ -25,8 +25,3 @@ void IServer::Start(int port)
 	OnStarted();
 }
 
-void IServer::OnStarted()
-{
-
-}
-

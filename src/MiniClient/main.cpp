@@ -27,7 +27,7 @@ void CreateClient(int index)
 	}
 }
 
-void main()
+int main()
 {
 	for (int idx = 0; idx < 10 ; idx++)
 	{
@@ -38,4 +38,5 @@ void main()
 	{
 		boost::this_thread::sleep(boost::posix_time::milliseconds(100));
 	}
+	return 0;
 }
