@@ -1,0 +1,14 @@
+/home/keith/dev/MServer/cmake/CMakeFiles/rebuild_cache.dir
+/home/keith/dev/MServer/cmake/CMakeFiles/GatewayServer.dir
+/home/keith/dev/MServer/cmake/CMakeFiles/edit_cache.dir
+/home/keith/dev/MServer/cmake/CMakeFiles/MiniClient.dir
+/home/keith/dev/MServer/cmake/src/NetWork/CMakeFiles/edit_cache.dir
+/home/keith/dev/MServer/cmake/src/NetWork/CMakeFiles/rebuild_cache.dir
+/home/keith/dev/MServer/cmake/src/NetWork/CMakeFiles/NetWork.dir
+/home/keith/dev/MServer/cmake/src/ServerBase/CMakeFiles/edit_cache.dir
+/home/keith/dev/MServer/cmake/src/ServerBase/CMakeFiles/rebuild_cache.dir
+/home/keith/dev/MServer/cmake/src/ServerBase/CMakeFiles/ServerBase.dir
+/home/keith/dev/MServer/cmake/src/MiniClient/CMakeFiles/edit_cache.dir
+/home/keith/dev/MServer/cmake/src/MiniClient/CMakeFiles/rebuild_cache.dir
+/home/keith/dev/MServer/cmake/src/GatewayServer/CMakeFiles/edit_cache.dir
+/home/keith/dev/MServer/cmake/src/GatewayServer/CMakeFiles/rebuild_cache.dir

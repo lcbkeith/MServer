@@ -1,0 +1,2 @@
+/usr/bin/ar qc libNetWork.a  CMakeFiles/NetWork.dir/NetMessage.cpp.o CMakeFiles/NetWork.dir/AsioServerApp.cpp.o CMakeFiles/NetWork.dir/AsioTcpConnection.cpp.o CMakeFiles/NetWork.dir/AsioClientApp.cpp.o
+/usr/bin/ranlib libNetWork.a

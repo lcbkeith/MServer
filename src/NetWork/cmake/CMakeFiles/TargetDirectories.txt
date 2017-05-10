@@ -1,0 +1,3 @@
+/home/keith/dev/MServer/src/NetWork/cmake/CMakeFiles/edit_cache.dir
+/home/keith/dev/MServer/src/NetWork/cmake/CMakeFiles/rebuild_cache.dir
+/home/keith/dev/MServer/src/NetWork/cmake/CMakeFiles/NetWork.dir
