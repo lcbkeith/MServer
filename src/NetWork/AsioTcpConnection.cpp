@@ -4,6 +4,7 @@ AsioTcpConnection::AsioTcpConnection(io_service& io_service)
 	:m_socket(io_service)
 	, m_unHandledSize(0)
 	, m_connID(m_connAllocID++)
+	, m_isReceiving(false)
 {
 
 }

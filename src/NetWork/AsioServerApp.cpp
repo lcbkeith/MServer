@@ -62,6 +62,8 @@ void AsioServerApp::HandleAccept(AsioTcpConnection* conn, const boost::system::e
 		m_connList.push_back(conn);
 		std::cout << "count" << m_connList.size() << std::endl;
 		std::cout << "------------" << std::endl;
+
+		conn->Start();
 		if (m_delegateConnected)
 		{
 			m_delegateConnected(conn);

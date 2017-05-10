@@ -3,6 +3,7 @@
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
 #include <boost/function.hpp>
+#include "NetMessage.h"
 using namespace boost;
 using namespace boost::asio;
 
@@ -26,8 +27,10 @@ private:
 	char m_recvBuffer[4*1024];
 	int m_unHandledSize;
 	int64 m_connID;
+	bool m_isReceiving;
 	static int64 m_connAllocID;
 };
 
-typedef boost::function<void(AsioTcpConnection*)> DelegateOnConnected;
-typedef boost::function<void(AsioTcpConnection*)> DelegateOnConnClosed;
+typedef boost::function<void(AsioTcpConnection*)>				DelegateOnConnected;
+typedef boost::function<void(AsioTcpConnection*)>				DelegateOnConnClosed;
+typedef boost::function<void(AsioTcpConnection*, NetMessage*)>	DelegateMsgRecv;

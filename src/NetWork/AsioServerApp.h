@@ -20,6 +20,7 @@ public:
 
 	void SetDelegateConnected(DelegateOnConnected func);
 	void SetDelegateConnClosed(DelegateOnConnClosed func);
+	void SetDelegateMsgRecv();
 private:
 	io_service*							m_ioService;
 	ip::tcp::acceptor*					m_accecptor;
