@@ -1,7 +1,7 @@
 #pragma once
 #include "includes.h"
-#include <boost/asio.hpp>
 #include <boost/thread.hpp>
+#include <boost/asio.hpp>
 #include "AsioTcpConnection.h"
 using namespace boost;
 using namespace boost::asio;

@@ -89,3 +89,8 @@ void AsioServerApp::SetDelegateConnClosed(DelegateOnConnClosed func)
 {
 	m_delegateConnClosed = func;
 }
+
+void AsioServerApp::SetDelegateMsgRecv()
+{
+
+}

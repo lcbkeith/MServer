@@ -33,3 +33,4 @@ Debug
 *.VC.db
 
 build
+/ipch/

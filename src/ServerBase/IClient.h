@@ -1,6 +1,5 @@
 #pragma once
-#include "../NetWork/AsioClientApp.h"
-
+#include "AsioClientApp.h"
 class IClient
 {
 public:

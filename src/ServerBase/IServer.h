@@ -1,5 +1,5 @@
 #pragma once
-#include "../NetWork/AsioServerApp.h"
+#include "AsioServerApp.h"
 
 class IServer
 {

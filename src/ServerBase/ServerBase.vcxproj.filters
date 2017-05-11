@@ -9,19 +9,30 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Network">
-      <UniqueIdentifier>{107e59d2-8149-4053-9e60-488198b08759}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IServer.h">
+    <ClInclude Include="AsioTcpConnection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NetMessage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeDefines.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AsioClientApp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AsioServerApp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="IClient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IServer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Obj.h">
@@ -29,10 +40,22 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IServer.cpp">
+    <ClCompile Include="AsioTcpConnection.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NetMessage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AsioClientApp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AsioServerApp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="IClient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IServer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,5 @@
 #pragma once
-
-#include "../NetWork/TypeDefines.h"
+#include "TypeDefines.h"
 class Obj
 {
 public:

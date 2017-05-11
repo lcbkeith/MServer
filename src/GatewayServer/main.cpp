@@ -2,7 +2,7 @@
 int main()
 {
 	GatewayApp* gateway = new GatewayApp;
-	gateway->Start(2034);
+	gateway->Start(10011);
 	while (true)
 	{
 		gateway->Tick();

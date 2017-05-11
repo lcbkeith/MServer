@@ -1,4 +1,5 @@
 #include "AsioClientApp.h"
+#include <boost/thread/detail/thread.hpp>
 AsioClientApp::AsioClientApp()
 	:m_sharedSvc(false)
 {

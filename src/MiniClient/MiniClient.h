@@ -7,8 +7,6 @@ public:
 	MiniClient() {}
 	virtual ~MiniClient() {};
 	void SetIOService(io_service& service) { m_clientApp->SetIOService(service); }
-
-	static std::vector<MiniClient*> m_clients;
 protected:
 private:
 };
