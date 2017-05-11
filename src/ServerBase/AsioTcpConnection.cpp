@@ -77,7 +77,7 @@ void AsioTcpConnection::OnReceiveData(int size)
 				m_unHandledSize -= readSize;
 				if (m_unHandledSize > 0)
 				{
-					memcpy_s(m_recvBuffer, sizeof(m_recvBuffer), m_recvBuffer + readSize, sizeof(m_recvBuffer) - readSize);
+					memcpy(m_recvBuffer, m_recvBuffer + readSize, sizeof(m_recvBuffer) - readSize);
 				}
 				
 				break;
