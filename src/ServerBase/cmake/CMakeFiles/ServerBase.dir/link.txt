@@ -1,2 +1,0 @@
-/usr/bin/ar qc libServerBase.a  CMakeFiles/ServerBase.dir/IClient.cpp.o CMakeFiles/ServerBase.dir/IServer.cpp.o
-/usr/bin/ranlib libServerBase.a

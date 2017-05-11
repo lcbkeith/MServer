@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/MiniClient.dir/src/MiniClient/main.cpp.o  -o bin/MiniClient -lboost_system -lboost_thread src/NetWork/libNetWork.a src/ServerBase/libServerBase.a 

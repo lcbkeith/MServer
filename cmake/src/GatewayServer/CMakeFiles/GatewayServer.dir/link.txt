@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/GatewayServer.dir/main.cpp.o  -o GatewayServer -lboost_system -lboost_thread ../NetWork/libNetWork.a ../ServerBase/libServerBase.a 

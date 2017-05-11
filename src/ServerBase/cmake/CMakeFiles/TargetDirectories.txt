@@ -1,3 +1,0 @@
-/home/keith/dev/MServer/src/ServerBase/cmake/CMakeFiles/edit_cache.dir
-/home/keith/dev/MServer/src/ServerBase/cmake/CMakeFiles/rebuild_cache.dir
-/home/keith/dev/MServer/src/ServerBase/cmake/CMakeFiles/ServerBase.dir
