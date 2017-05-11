@@ -19,6 +19,8 @@ public:
 	void Update();
 	void HandleRead(const boost::system::error_code& error, size_t bytesTransfered);
 	void HandleWrite(const boost::system::error_code& error, size_t bytesTransfered);
+
+	void OnReceiveData(int size);
 	
 	ip::tcp::socket& GetSocket();
 private:

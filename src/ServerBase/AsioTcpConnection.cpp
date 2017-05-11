@@ -37,7 +37,7 @@ void AsioTcpConnection::HandleRead(const boost::system::error_code& error, size_
 {
 	if (!error)
 	{
-		//m_conn->ProcessRecvData(bytes_transferred);
+		OnReceiveData(bytesTransfered);
 
 		char* buf = m_recvBuffer + m_unHandledSize;
 		int size = sizeof(m_recvBuffer) - m_unHandledSize;
@@ -56,6 +56,36 @@ void AsioTcpConnection::HandleRead(const boost::system::error_code& error, size_
 void AsioTcpConnection::HandleWrite(const boost::system::error_code& error, size_t bytesTransfered)
 {
 
+}
+
+
+void AsioTcpConnection::OnReceiveData(int size)
+{
+	if (size <= 0)
+	{
+		return;
+	}
+	m_unHandledSize += size;
+	while (m_unHandledSize > 0)
+	{
+		for (int idx = 0; idx < sizeof(m_recvBuffer); idx++)
+		{
+			if (m_recvBuffer[idx] == '\n')
+			{
+				int readSize = idx + 1;
+				std::cout << std::string(m_recvBuffer) << std::endl;
+				m_unHandledSize -= readSize;
+				if (m_unHandledSize > 0)
+				{
+					memcpy_s(m_recvBuffer, sizeof(m_recvBuffer), m_recvBuffer + readSize, sizeof(m_recvBuffer) - readSize);
+				}
+				
+				break;
+			}
+		}
+	}
+	
+	
 }
 
 boost::asio::ip::tcp::socket& AsioTcpConnection::GetSocket()

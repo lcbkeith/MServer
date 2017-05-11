@@ -43,12 +43,15 @@ void AsioClientApp::OnConn(AsioTcpConnection* conn, const boost::system::error_c
 {
 	if (err)
 	{
+		//reconn config
 		boost::asio::async_connect(conn->GetSocket(), m_rsvIter,
 			boost::bind(&AsioClientApp::OnConn, this, conn, boost::asio::placeholders::error));
 	}
 	else
 	{
 		std::cout << "AsioClientApp::OnConn,thread" << boost::this_thread::get_id()<< ",ip:" << conn->GetSocket().remote_endpoint().address() << std::endl;
+
+		conn->Start();
 	}
 }
 
@@ -60,9 +63,11 @@ void AsioClientApp::SetIOService(io_service& ioService)
 
 void AsioClientApp::Tick()
 {
+	m_conn->Update();
 	if (m_workThreads.empty())
 	{
 		m_ioService->poll_one();
 	}
+
 }
 
