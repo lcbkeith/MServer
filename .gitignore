@@ -31,3 +31,5 @@
 Debug
 *.VC.VC.opendb
 *.VC.db
+
+build
