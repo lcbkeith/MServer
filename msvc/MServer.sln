@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GatewayServer", "src\GatewayServer\GatewayServer.vcxproj", "{49F99B05-6AD2-4291-B6D7-8C4F28A75E81}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GatewayServer", "projects\GatewayServer\GatewayServer.vcxproj", "{49F99B05-6AD2-4291-B6D7-8C4F28A75E81}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6F4B7D67-7E37-4720-9A8A-614BAF2C644A} = {6F4B7D67-7E37-4720-9A8A-614BAF2C644A}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerBase", "src\ServerBase\ServerBase.vcxproj", "{6F4B7D67-7E37-4720-9A8A-614BAF2C644A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerBase", "projects\ServerBase\ServerBase.vcxproj", "{6F4B7D67-7E37-4720-9A8A-614BAF2C644A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiniClient", "src\MiniClient\MiniClient.vcxproj", "{90E23450-CB30-4B3D-ACEC-CBFAFCB1C36B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiniClient", "projects\MiniClient\MiniClient.vcxproj", "{90E23450-CB30-4B3D-ACEC-CBFAFCB1C36B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6F4B7D67-7E37-4720-9A8A-614BAF2C644A} = {6F4B7D67-7E37-4720-9A8A-614BAF2C644A}
 	EndProjectSection

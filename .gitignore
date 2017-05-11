@@ -28,9 +28,8 @@
 *.out
 *.app
 
-Debug
 *.VC.VC.opendb
 *.VC.db
 
 build
-/ipch/
+
