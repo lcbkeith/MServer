@@ -58,5 +58,8 @@
     <ClInclude Include="..\..\..\src\ServerBase\AsioTcpConnection.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CircleDeque.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
