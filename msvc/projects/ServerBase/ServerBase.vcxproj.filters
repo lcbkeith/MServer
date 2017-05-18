@@ -61,5 +61,14 @@
     <ClInclude Include="CircleDeque.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="MessageQueue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoMutex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryPool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

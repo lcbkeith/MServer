@@ -36,7 +36,10 @@
     <ClInclude Include="..\..\..\src\ServerBase\NetMessage.h" />
     <ClInclude Include="..\..\..\src\ServerBase\Obj.h" />
     <ClInclude Include="..\..\..\src\ServerBase\TypeDefines.h" />
+    <ClInclude Include="AutoMutex.h" />
     <ClInclude Include="CircleDeque.h" />
+    <ClInclude Include="MemoryPool.h" />
+    <ClInclude Include="MessageQueue.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6F4B7D67-7E37-4720-9A8A-614BAF2C644A}</ProjectGuid>
