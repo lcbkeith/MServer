@@ -1,6 +1,6 @@
 #pragma once
-class NetMessage
+struct NetMessage
 {
-public:
-
+	short Length;
+	short MessageId;
 };

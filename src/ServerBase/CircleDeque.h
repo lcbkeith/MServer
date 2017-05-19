@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <cstring>
 
 template<class T>
 class CircleDeque
@@ -64,9 +65,9 @@ public:
 		{
 			return nullptr;
 		}
-		return m_data[m_head];
+		return &m_data[m_head];
 	}
-	T& Back()
+	T* Back()
 	{
 		if (Empty())
 		{
@@ -74,9 +75,9 @@ public:
 		}
 		if (m_tail == 0)
 		{
-			return m_data.back();
+			return &m_data.back();
 		}
-		return m_data[m_tail - 1];
+		return &m_data[m_tail - 1];
 	}
 	void PopFront()
 	{

@@ -24,22 +24,22 @@
     <ClCompile Include="..\..\..\src\ServerBase\AsioTcpConnection.cpp" />
     <ClCompile Include="..\..\..\src\ServerBase\IClient.cpp" />
     <ClCompile Include="..\..\..\src\ServerBase\IServer.cpp" />
-    <ClCompile Include="..\..\..\src\ServerBase\NetMessage.cpp" />
+    <ClCompile Include="..\..\..\src\ServerBase\MessageQueue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\ServerBase\AsioClientApp.h" />
     <ClInclude Include="..\..\..\src\ServerBase\AsioServerApp.h" />
     <ClInclude Include="..\..\..\src\ServerBase\AsioTcpConnection.h" />
+    <ClInclude Include="..\..\..\src\ServerBase\AutoLocker.h" />
+    <ClInclude Include="..\..\..\src\ServerBase\CircleDeque.h" />
     <ClInclude Include="..\..\..\src\ServerBase\IClient.h" />
     <ClInclude Include="..\..\..\src\ServerBase\includes.h" />
     <ClInclude Include="..\..\..\src\ServerBase\IServer.h" />
+    <ClInclude Include="..\..\..\src\ServerBase\MemoryPool.h" />
+    <ClInclude Include="..\..\..\src\ServerBase\MessageQueue.h" />
     <ClInclude Include="..\..\..\src\ServerBase\NetMessage.h" />
     <ClInclude Include="..\..\..\src\ServerBase\Obj.h" />
     <ClInclude Include="..\..\..\src\ServerBase\TypeDefines.h" />
-    <ClInclude Include="AutoMutex.h" />
-    <ClInclude Include="CircleDeque.h" />
-    <ClInclude Include="MemoryPool.h" />
-    <ClInclude Include="MessageQueue.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6F4B7D67-7E37-4720-9A8A-614BAF2C644A}</ProjectGuid>
