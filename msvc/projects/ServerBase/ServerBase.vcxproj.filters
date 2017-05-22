@@ -9,35 +9,22 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="MessageBase">
-      <UniqueIdentifier>{43d7e92b-549c-4568-b492-c5c8857bb5b4}</UniqueIdentifier>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\src\ServerBase\IClient.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\ServerBase\IServer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\ServerBase\AsioClientApp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\ServerBase\AsioServerApp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\ServerBase\AsioTcpConnection.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\ServerBase\MessageQueue.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <Filter Include="NetBase">
+      <UniqueIdentifier>{1eaabd01-899b-4b01-9890-b3230439de21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\ServerBase\IClient.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\ServerBase\IServer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerBase\MessageQueue.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\ServerBase\AsioClientApp.h">
@@ -49,29 +36,46 @@
     <ClInclude Include="..\..\..\src\ServerBase\AsioTcpConnection.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\includes.h">
-      <Filter>MessageBase</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\MemoryPool.h">
-      <Filter>MessageBase</Filter>
+    <ClInclude Include="..\..\..\src\ServerBase\AutoLocker.h">
+      <Filter>NetBase</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\ServerBase\CircleDeque.h">
-      <Filter>MessageBase</Filter>
+      <Filter>NetBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\TypeDefines.h">
-      <Filter>MessageBase</Filter>
+    <ClInclude Include="..\..\..\src\ServerBase\includes.h">
+      <Filter>NetBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\Obj.h">
-      <Filter>MessageBase</Filter>
+    <ClInclude Include="..\..\..\src\ServerBase\MemoryPool.h">
+      <Filter>NetBase</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\ServerBase\NetMessage.h">
-      <Filter>MessageBase</Filter>
+      <Filter>NetBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\MessageQueue.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="..\..\..\src\ServerBase\Obj.h">
+      <Filter>NetBase</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\AutoLocker.h">
-      <Filter>MessageBase</Filter>
+    <ClInclude Include="..\..\..\src\ServerBase\TypeDefines.h">
+      <Filter>NetBase</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\ServerBase\IServer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ServerBase\MessageQueue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ServerBase\AsioClientApp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ServerBase\AsioServerApp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ServerBase\AsioTcpConnection.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ServerBase\IClient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

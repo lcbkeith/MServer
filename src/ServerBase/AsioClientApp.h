@@ -17,6 +17,11 @@ public:
 	void OnConn(AsioTcpConnection* conn, const boost::system::error_code& err);
 	void SetIOService(io_service& ioService);
 	void Tick();
+	AsioTcpConnection* GetConnect() { return m_conn; }
+
+	void SetDelegateConnected(DelegateOnConnected func);
+	void SetDelegateConnClosed(DelegateOnConnClosed func);
+	void SetDelegateMsgRecv(DelegateMsgRecv func);
 protected:
 private:
 	bool m_sharedSvc;
@@ -26,6 +31,9 @@ private:
 	ip::tcp::resolver::iterator m_rsvIter;
 
 	std::vector<boost::thread*> m_workThreads;
-
 	AsioTcpConnection* m_conn;
+
+	DelegateOnConnected m_delegateConnected;
+	DelegateOnConnClosed m_delegateConnClosed;
+	DelegateMsgRecv m_delegateMsgRecv;
 };

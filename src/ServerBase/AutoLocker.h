@@ -1,11 +1,22 @@
 #pragma once
 #include <mutex>
+
 class AutoLocker
 {
 public:
-	AutoLocker(std::mutex& mutex):m_mutex(mutex) { m_mutex.lock(); }
-	~AutoLocker() { m_mutex.unlock(); }
-protected:
+	inline AutoLocker(std::mutex& mutex) : mLock(&mutex)
+	{
+		mLock->lock();
+	}
+	inline AutoLocker(std::mutex* mutex) : mLock(mutex)
+	{ 
+		mLock->lock(); 
+	}
+ 
+	inline ~AutoLocker()
+	{
+		mLock->unlock(); 
+	}
 private:
-	std::mutex& m_mutex;
+	std::mutex * mLock;
 };

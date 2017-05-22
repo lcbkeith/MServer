@@ -62,7 +62,7 @@ void AsioServerApp::HandleAccept(AsioTcpConnection* conn, const boost::system::e
 		m_connList.push_back(conn);
 		std::cout << "count" << m_connList.size() << std::endl;
 		std::cout << "------------" << std::endl;
-
+		conn->m_funcProcRecvMsg = m_delegateMsgRecv;
 		conn->Start();
 		if (m_delegateConnected)
 		{
@@ -78,6 +78,22 @@ void AsioServerApp::Tick()
 	{
 		m_ioService->poll_one();
 	}
+	char msg_copy_buffer[32 * 1024];
+	NetMessage* recv_msg = (NetMessage*)&msg_copy_buffer[0];
+
+	auto iter = m_connList.begin();
+	for (; iter!= m_connList.end(); iter++)
+	{
+		AsioTcpConnection* conn = *iter;
+		while (conn->GetMessage(recv_msg))
+		{
+			if (!conn->m_funcProcRecvMsg(conn, recv_msg))
+			{
+				break;
+			}
+		}
+	}
+	
 }
 
 void AsioServerApp::SetDelegateConnected(DelegateOnConnected func)
@@ -90,7 +106,7 @@ void AsioServerApp::SetDelegateConnClosed(DelegateOnConnClosed func)
 	m_delegateConnClosed = func;
 }
 
-void AsioServerApp::SetDelegateMsgRecv()
+void AsioServerApp::SetDelegateMsgRecv(DelegateMsgRecv func)
 {
-
+	m_delegateMsgRecv = func;
 }

@@ -19,14 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\ServerBase\AsioClientApp.cpp" />
-    <ClCompile Include="..\..\..\src\ServerBase\AsioServerApp.cpp" />
-    <ClCompile Include="..\..\..\src\ServerBase\AsioTcpConnection.cpp" />
-    <ClCompile Include="..\..\..\src\ServerBase\IClient.cpp" />
-    <ClCompile Include="..\..\..\src\ServerBase\IServer.cpp" />
-    <ClCompile Include="..\..\..\src\ServerBase\MessageQueue.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\..\src\ServerBase\AsioClientApp.h" />
     <ClInclude Include="..\..\..\src\ServerBase\AsioServerApp.h" />
     <ClInclude Include="..\..\..\src\ServerBase\AsioTcpConnection.h" />
@@ -41,8 +33,16 @@
     <ClInclude Include="..\..\..\src\ServerBase\Obj.h" />
     <ClInclude Include="..\..\..\src\ServerBase\TypeDefines.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\ServerBase\AsioClientApp.cpp" />
+    <ClCompile Include="..\..\..\src\ServerBase\AsioServerApp.cpp" />
+    <ClCompile Include="..\..\..\src\ServerBase\AsioTcpConnection.cpp" />
+    <ClCompile Include="..\..\..\src\ServerBase\IClient.cpp" />
+    <ClCompile Include="..\..\..\src\ServerBase\IServer.cpp" />
+    <ClCompile Include="..\..\..\src\ServerBase\MessageQueue.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6F4B7D67-7E37-4720-9A8A-614BAF2C644A}</ProjectGuid>
+    <ProjectGuid>{F0833D5D-109C-4C5D-A56B-738E3990EA34}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ServerBase</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -103,7 +103,6 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -124,13 +123,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -21,5 +21,6 @@ void IClient::Tick()
 void IClient::Start(const char* host, int port, int threadCount)
 {
 	m_clientApp->Start(host, port, threadCount);
+	OnStarted();
 }
 

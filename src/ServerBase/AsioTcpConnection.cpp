@@ -5,8 +5,11 @@ AsioTcpConnection::AsioTcpConnection(io_service& io_service)
 	, m_unHandledSize(0)
 	, m_connID(m_connAllocID++)
 	, m_isReceiving(false)
+	, m_sendingBytes(0)
 {
-
+	static MemoryPool pool;
+	m_inQueue = new MessageQueue(&pool);
+	m_outQueue = new MessageQueue(&pool);
 }
 
 AsioTcpConnection::~AsioTcpConnection()
@@ -30,7 +33,8 @@ void AsioTcpConnection::Start()
 
 void AsioTcpConnection::Update()
 {
-
+	//close check return
+	ForceSend();
 }
 
 void AsioTcpConnection::HandleRead(const boost::system::error_code& error, size_t bytesTransfered)
@@ -55,7 +59,12 @@ void AsioTcpConnection::HandleRead(const boost::system::error_code& error, size_
 
 void AsioTcpConnection::HandleWrite(const boost::system::error_code& error, size_t bytesTransfered)
 {
-
+	if (error)
+	{
+		//m_close = true;
+	}
+	memcpy(m_sendBuffer, m_sendBuffer + bytesTransfered, m_sendingBytes - bytesTransfered);
+	ForceSend();
 }
 
 
@@ -66,26 +75,61 @@ void AsioTcpConnection::OnReceiveData(int size)
 		return;
 	}
 	m_unHandledSize += size;
+	NetMessage* msg = (NetMessage*)m_recvBuffer;
 	while (m_unHandledSize > 0)
 	{
-		for (int idx = 0; idx < sizeof(m_recvBuffer); idx++)
+		short msgLength = msg->Length;
+		//todo assert length;
+		if (m_unHandledSize >= msgLength)
 		{
-			if (m_recvBuffer[idx] == '\n')
-			{
-				int readSize = idx + 1;
-				std::cout << std::string(m_recvBuffer) << std::endl;
-				m_unHandledSize -= readSize;
-				if (m_unHandledSize > 0)
-				{
-					memcpy(m_recvBuffer, m_recvBuffer + readSize, sizeof(m_recvBuffer) - readSize);
-				}
-				
-				break;
-			}
+			m_inQueue->PushMessage(msg);
+			m_unHandledSize -= msgLength;
+		}
+		else
+		{
+			break;
 		}
 	}
 	
 	
+}
+
+void AsioTcpConnection::Send(NetMessage& msg)
+{
+	m_outQueue->PushMessage(&msg);
+	//check
+	ForceSend();
+}
+
+
+void AsioTcpConnection::ForceSend()
+{
+	if (m_outQueue->Empty())
+	{
+		return;
+	}
+	int bytes = m_outQueue->PopEnoughMessage(m_sendBuffer + m_sendingBytes, sizeof(m_sendBuffer) - m_sendingBytes);
+	if (bytes > 0)
+	{
+		m_sendingBytes += bytes;
+		m_socket.async_write_some(boost::asio::buffer(m_sendBuffer, m_sendingBytes),
+			boost::bind(&AsioTcpConnection::HandleWrite, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred)
+		);
+	}
+}
+
+
+bool AsioTcpConnection::GetMessage(NetMessage* msg)
+{
+	if (m_inQueue->Empty())
+	{
+		return false;
+	}
+	if (m_inQueue->PopMessage(msg))
+	{
+		return true;
+	}
+	return false;
 }
 
 boost::asio::ip::tcp::socket& AsioTcpConnection::GetSocket()

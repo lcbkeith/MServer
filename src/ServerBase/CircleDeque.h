@@ -59,25 +59,27 @@ public:
 		m_dataSize++;
 	}
 
-	T* Front()
+	T& Front()
 	{
 		if (Empty())
 		{
-			return nullptr;
+			static T t;
+			return t;
 		}
-		return &m_data[m_head];
+		return m_data[m_head];
 	}
-	T* Back()
+	T& Back()
 	{
 		if (Empty())
 		{
-			return nullptr;
+			static T t;
+			return t;
 		}
 		if (m_tail == 0)
 		{
-			return &m_data.back();
+			return m_data.back();
 		}
-		return &m_data[m_tail - 1];
+		return m_data[m_tail - 1];
 	}
 	void PopFront()
 	{

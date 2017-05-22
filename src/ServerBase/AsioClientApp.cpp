@@ -49,9 +49,13 @@ void AsioClientApp::OnConn(AsioTcpConnection* conn, const boost::system::error_c
 	}
 	else
 	{
-		std::cout << "AsioClientApp::OnConn,thread" << boost::this_thread::get_id()<< ",ip:" << conn->GetSocket().remote_endpoint().address() << std::endl;
-
+		//std::cout << "AsioClientApp::OnConn,thread" << boost::this_thread::get_id()<< ",ip:" << conn->GetSocket().remote_endpoint().address() << std::endl;
+		conn->m_funcProcRecvMsg = m_delegateMsgRecv;
 		conn->Start();
+		if (m_delegateConnected)
+		{
+			m_delegateConnected(conn);
+		}
 	}
 }
 
@@ -69,5 +73,30 @@ void AsioClientApp::Tick()
 		m_ioService->poll_one();
 	}
 
+	char msg_copy_buffer[32 * 1024];
+	NetMessage* recv_msg = (NetMessage*)&msg_copy_buffer[0];
+	while (m_conn->GetMessage(recv_msg))
+	{
+		if (!m_conn->m_funcProcRecvMsg(m_conn, recv_msg))
+		{
+			break;
+		}
+	}
+
+}
+
+void AsioClientApp::SetDelegateConnected(DelegateOnConnected func)
+{
+	m_delegateConnected = func;
+}
+
+void AsioClientApp::SetDelegateConnClosed(DelegateOnConnClosed func)
+{
+	m_delegateConnClosed = func;
+}
+
+void AsioClientApp::SetDelegateMsgRecv(DelegateMsgRecv func)
+{
+	m_delegateMsgRecv = func;
 }
 
