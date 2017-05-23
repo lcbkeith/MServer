@@ -1,41 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="NetBase">
       <UniqueIdentifier>{1eaabd01-899b-4b01-9890-b3230439de21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AsioApp">
+      <UniqueIdentifier>{5e79fa39-d758-4e6c-a512-a99b9aed0f38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd">
+      <UniqueIdentifier>{c605dd1f-e0f3-4989-b1d1-583ba6f75422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{b90ca092-157e-48c7-a26d-dece46b73a60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\ServerBase\IClient.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\IServer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\MessageQueue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\AsioClientApp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\AsioServerApp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\ServerBase\AsioTcpConnection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\ServerBase\AutoLocker.h">
       <Filter>NetBase</Filter>
     </ClInclude>
@@ -57,25 +36,49 @@
     <ClInclude Include="..\..\..\src\ServerBase\TypeDefines.h">
       <Filter>NetBase</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerBase\MessageQueue.h">
+      <Filter>AsioApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerBase\AsioClientApp.h">
+      <Filter>AsioApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerBase\AsioServerApp.h">
+      <Filter>AsioApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerBase\AsioTcpConnection.h">
+      <Filter>AsioApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerBase\IClient.h">
+      <Filter>AsioApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerBase\IServer.h">
+      <Filter>AsioApp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerBase\Tools\JsonConfig.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\ServerBase\IServer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\ServerBase\MessageQueue.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\ServerBase\AsioClientApp.cpp">
-      <Filter>源文件</Filter>
+      <Filter>AsioApp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\ServerBase\AsioServerApp.cpp">
-      <Filter>源文件</Filter>
+      <Filter>AsioApp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\ServerBase\AsioTcpConnection.cpp">
-      <Filter>源文件</Filter>
+      <Filter>AsioApp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\ServerBase\IClient.cpp">
-      <Filter>源文件</Filter>
+      <Filter>AsioApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ServerBase\IServer.cpp">
+      <Filter>AsioApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ServerBase\MessageQueue.cpp">
+      <Filter>AsioApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\ServerBase\Tools\JsonConfig.cpp">
+      <Filter>Tools</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

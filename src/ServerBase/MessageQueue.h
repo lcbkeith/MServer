@@ -3,7 +3,6 @@
 #include "NetMessage.h"
 #include <mutex>
 #include "MemoryPool.h"
-
 class MessageQueue
 {
 public:

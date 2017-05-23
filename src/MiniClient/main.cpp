@@ -1,7 +1,17 @@
 #include "MiniClient.h"
+#include "..\ServerBase\Tools\JsonConfig.h"
 
 void CreateClient(int index)
 {
+	JsonConfig config;
+	if (!config.Parse("MiniClient.setting"))
+	{
+		return;
+	}
+
+	std::string serverIP = config.GetString("GateIP");
+	int port = config.GetInt("port");
+	
 	int clientCount = 1;
 	io_service* service = new io_service;
 	std::vector<MiniClient*> clients;
@@ -11,7 +21,7 @@ void CreateClient(int index)
 		MiniClient* client = new MiniClient;
 		client->SetID(index * 10000 + idx + 1);
 		client->SetIOService(*service);
-		client->Start("127.0.0.1", 10011, 0);
+		client->Start(serverIP.c_str(), port, 0);
 
 		clients.push_back(client);
 		std::cout << "client:" << client->GetID() << " create"<<std::endl;

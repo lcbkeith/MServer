@@ -31,6 +31,7 @@
     <ClInclude Include="..\..\..\src\ServerBase\MessageQueue.h" />
     <ClInclude Include="..\..\..\src\ServerBase\NetMessage.h" />
     <ClInclude Include="..\..\..\src\ServerBase\Obj.h" />
+    <ClInclude Include="..\..\..\src\ServerBase\Tools\JsonConfig.h" />
     <ClInclude Include="..\..\..\src\ServerBase\TypeDefines.h" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +41,7 @@
     <ClCompile Include="..\..\..\src\ServerBase\IClient.cpp" />
     <ClCompile Include="..\..\..\src\ServerBase\IServer.cpp" />
     <ClCompile Include="..\..\..\src\ServerBase\MessageQueue.cpp" />
+    <ClCompile Include="..\..\..\src\ServerBase\Tools\JsonConfig.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F0833D5D-109C-4C5D-A56B-738E3990EA34}</ProjectGuid>
@@ -93,7 +95,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(BOOST_ROOT);$(IncludePath)</IncludePath>
+    <IncludePath>$(BOOST_ROOT);$(SolutionDir)..\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST_ROOT)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

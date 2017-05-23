@@ -1,8 +1,12 @@
 #include "GatewayApp.h"
+#include "..\ServerBase\Tools\JsonConfig.h"
 int main()
 {
+	JsonConfig config;
+	assert(config.Parse("GatewayServer.setting"));
+	int port = config.GetInt("port");
 	GatewayApp* gateway = new GatewayApp;
-	gateway->Start(10011);
+	gateway->Start(port);
 	while (true)
 	{
 		gateway->Tick();
