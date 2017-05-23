@@ -34,6 +34,5 @@ const char* JsonConfig::GetString(const char* key)
 {
 	assert(m_configJson.HasMember(key));
 	assert(m_configJson[key].IsString());
-
 	return m_configJson[key].GetString();
 }

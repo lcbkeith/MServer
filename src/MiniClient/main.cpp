@@ -1,5 +1,5 @@
 #include "MiniClient.h"
-#include "..\ServerBase\Tools\JsonConfig.h"
+#include "../ServerBase/Tools/JsonConfig.h"
 
 void CreateClient(int index)
 {
