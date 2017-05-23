@@ -2,7 +2,15 @@
 #include <fstream>
 #include <sstream>
 #include <assert.h>
+JsonConfig::JsonConfig()
+{
 
+}
+
+JsonConfig::~JsonConfig()
+{
+
+}
 
 bool JsonConfig::Parse(const std::string& fileName)
 {
@@ -26,7 +34,7 @@ bool JsonConfig::Parse(const std::string& fileName)
 int JsonConfig::GetInt(const std::string& key)
 {
 	assert(m_configJson.HasMember(key.c_str()));
-	assert(m_configJson[key.c_str()].IsString());
+	assert(m_configJson[key.c_str()].IsInt());
 	return m_configJson[key.c_str()].GetInt();
 }
 

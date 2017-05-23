@@ -5,6 +5,8 @@
 class JsonConfig
 {
 public:
+	JsonConfig();
+	~JsonConfig();
 	bool Parse(const std::string& fileName);
 
 	int GetInt(const std::string& key);

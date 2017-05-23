@@ -8,4 +8,5 @@ add_executable(GatewayServer ${SRC_LIST})
 target_link_libraries(GatewayServer 
     boost_system
     boost_thread
-    ServerBase)
+    ServerBase
+)
