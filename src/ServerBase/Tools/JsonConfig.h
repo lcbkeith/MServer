@@ -5,10 +5,10 @@
 class JsonConfig
 {
 public:
-	bool Parse(const char* fileName);
+	bool Parse(const std::string& fileName);
 
-	int GetInt(const char* key);
-	const char* GetString(const char* key);
+	int GetInt(const std::string& key);
+	const char* GetString(const std::string& key);
 protected:
 private:
 	rapidjson::Document m_configJson;

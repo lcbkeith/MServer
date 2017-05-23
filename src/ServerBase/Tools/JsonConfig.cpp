@@ -4,7 +4,7 @@
 #include <assert.h>
 
 
-bool JsonConfig::Parse(const char* fileName)
+bool JsonConfig::Parse(const std::string& fileName)
 {
 	std::ifstream file(fileName, std::ios::in | std::ios::binary);
 	if (file.is_open())
@@ -23,16 +23,16 @@ bool JsonConfig::Parse(const char* fileName)
 
 }
 
-int JsonConfig::GetInt(const char* key)
+int JsonConfig::GetInt(const std::string& key)
 {
-	assert(m_configJson.HasMember(key));
-	assert(m_configJson[key].IsString());
-	return m_configJson[key].GetInt();
+	assert(m_configJson.HasMember(key.c_str()));
+	assert(m_configJson[key.c_str()].IsString());
+	return m_configJson[key.c_str()].GetInt();
 }
 
-const char* JsonConfig::GetString(const char* key)
+const char* JsonConfig::GetString(const std::string& key)
 {
-	assert(m_configJson.HasMember(key));
-	assert(m_configJson[key].IsString());
-	return m_configJson[key].GetString();
+	assert(m_configJson.HasMember(key.c_str()));
+	assert(m_configJson[key.c_str()].IsString());
+	return m_configJson[key.c_str()].GetString();
 }
