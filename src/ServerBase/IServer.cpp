@@ -22,6 +22,11 @@ void IServer::Tick()
 void IServer::Start(int port)
 {
 	m_serverApp->AppStart(port, 4);
+
+	m_serverApp->SetDelegateConnected(boost::bind(&IServer::OnClientConnected, this, _1));
+	m_serverApp->SetDelegateConnClosed(boost::bind(&IServer::OnClientClosed, this, _1));
+	m_serverApp->SetDelegateMsgRecv(boost::bind(&IServer::OnClientMsgRecv, this, _1, _2));
+
 	OnStarted();
 }
 

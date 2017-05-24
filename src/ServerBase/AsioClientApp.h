@@ -2,12 +2,12 @@
 #include "includes.h"
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
-#include "AsioTcpConnection.h"
+#include "IAsioApp.h"
 
 using namespace boost;
 using namespace boost::asio;
 
-class AsioClientApp
+class AsioClientApp : public IAsioApp
 {
 public:
 	AsioClientApp();
@@ -18,10 +18,6 @@ public:
 	void SetIOService(io_service& ioService);
 	void Tick();
 	AsioTcpConnection* GetConnect() { return m_conn; }
-
-	void SetDelegateConnected(DelegateOnConnected func);
-	void SetDelegateConnClosed(DelegateOnConnClosed func);
-	void SetDelegateMsgRecv(DelegateMsgRecv func);
 protected:
 private:
 	bool m_sharedSvc;
@@ -32,8 +28,4 @@ private:
 
 	std::vector<boost::thread*> m_workThreads;
 	AsioTcpConnection* m_conn;
-
-	DelegateOnConnected m_delegateConnected;
-	DelegateOnConnClosed m_delegateConnClosed;
-	DelegateMsgRecv m_delegateMsgRecv;
 };

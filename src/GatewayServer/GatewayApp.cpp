@@ -2,9 +2,7 @@
 
 void GatewayApp::OnStarted()
 {
-	m_serverApp->SetDelegateConnected(boost::bind(&GatewayApp::OnClientConnected, this, _1));
-	m_serverApp->SetDelegateConnClosed(boost::bind(&GatewayApp::OnClientClosed, this, _1));
-	m_serverApp->SetDelegateMsgRecv(boost::bind(&GatewayApp::OnClientMsgRecv, this, _1, _2));
+	
 }
 
 void GatewayApp::OnClientConnected(AsioTcpConnection* conn)

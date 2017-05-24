@@ -40,10 +40,11 @@ private:
 	int m_sendingBytes;
 	int m_unHandledSize;
 	int64 m_connID;
-	bool m_isReceiving;
 	static int64 m_connAllocID;
+
+	bool m_close;
+	bool m_isRecving;
+	bool m_isSending;
 };
 
-typedef boost::function<void(AsioTcpConnection*)>				DelegateOnConnected;
-typedef boost::function<void(AsioTcpConnection*)>				DelegateOnConnClosed;
-typedef boost::function<bool(AsioTcpConnection*, NetMessage*)>	DelegateMsgRecv;
+

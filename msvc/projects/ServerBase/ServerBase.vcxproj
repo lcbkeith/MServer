@@ -24,6 +24,7 @@
     <ClInclude Include="..\..\..\src\ServerBase\AsioTcpConnection.h" />
     <ClInclude Include="..\..\..\src\ServerBase\AutoLocker.h" />
     <ClInclude Include="..\..\..\src\ServerBase\CircleDeque.h" />
+    <ClInclude Include="..\..\..\src\ServerBase\IAsioApp.h" />
     <ClInclude Include="..\..\..\src\ServerBase\IClient.h" />
     <ClInclude Include="..\..\..\src\ServerBase\includes.h" />
     <ClInclude Include="..\..\..\src\ServerBase\IServer.h" />

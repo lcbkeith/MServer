@@ -7,11 +7,11 @@ public:
 	virtual ~GatewayApp() {}
 	virtual void OnStarted();
 protected:
-	void OnClientConnected(AsioTcpConnection* conn);
-	void OnClientClosed(AsioTcpConnection* conn);
-	bool OnClientMsgRecv(AsioTcpConnection* conn, NetMessage* msg);
+	virtual void OnClientConnected(AsioTcpConnection* conn) override;
+	virtual void OnClientClosed(AsioTcpConnection* conn) override;
+	virtual bool OnClientMsgRecv(AsioTcpConnection* conn, NetMessage* msg) override;
+
 	void SendMessage(int64 connId, NetMessage& message);
-	
 	void Update();
 private:
 	std::map<int64, AsioTcpConnection*> conns;

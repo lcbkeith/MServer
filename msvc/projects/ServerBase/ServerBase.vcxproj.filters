@@ -57,6 +57,9 @@
     <ClInclude Include="..\..\..\src\ServerBase\Tools\JsonConfig.h">
       <Filter>Tools</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\ServerBase\IAsioApp.h">
+      <Filter>AsioApp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\ServerBase\AsioClientApp.cpp">

@@ -2,12 +2,13 @@
 #include "includes.h"
 #include <boost/thread.hpp>
 #include <boost/asio.hpp>
-#include "AsioTcpConnection.h"
+#include "IAsioApp.h"
+
 using namespace boost;
 using namespace boost::asio;
 using namespace boost::asio::ip;
 
-class AsioServerApp
+class AsioServerApp : public IAsioApp
 {
 public:
 	AsioServerApp();
@@ -21,10 +22,6 @@ public:
 	void StartAccept();
 	void HandleAccept(AsioTcpConnection* conn, const boost::system::error_code& err);
 	void Tick();
-
-	void SetDelegateConnected(DelegateOnConnected func);
-	void SetDelegateConnClosed(DelegateOnConnClosed func);
-	void SetDelegateMsgRecv(DelegateMsgRecv func);
 private:
 	io_service*							m_ioService;
 	ip::tcp::acceptor*					m_accecptor;

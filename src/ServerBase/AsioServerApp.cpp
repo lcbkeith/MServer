@@ -93,20 +93,4 @@ void AsioServerApp::Tick()
 			}
 		}
 	}
-	
-}
-
-void AsioServerApp::SetDelegateConnected(DelegateOnConnected func)
-{
-	m_delegateConnected = func;
-}
-
-void AsioServerApp::SetDelegateConnClosed(DelegateOnConnClosed func)
-{
-	m_delegateConnClosed = func;
-}
-
-void AsioServerApp::SetDelegateMsgRecv(DelegateMsgRecv func)
-{
-	m_delegateMsgRecv = func;
 }

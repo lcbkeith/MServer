@@ -9,6 +9,10 @@ public:
 	virtual void Tick();
 	void Start(const char* host, int port, int threadCount = 0);
 	virtual void OnStarted() {}
+
+	virtual void OnServerConnected(AsioTcpConnection* conn) = 0;
+	virtual void OnConnectionClosed(AsioTcpConnection* conn) = 0;
+	virtual bool OnServerMsgRecv(AsioTcpConnection* conn, NetMessage* msg) = 0;
 protected:
 	AsioClientApp* m_clientApp;
 private:
