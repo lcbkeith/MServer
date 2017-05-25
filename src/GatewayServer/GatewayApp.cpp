@@ -9,7 +9,6 @@ void GatewayApp::OnClientConnected(AsioTcpConnection* conn)
 {
 	std::cout << " GatewayApp::OnClientConnected:" << conn->GetID() << std::endl;
 	conns.insert(std::make_pair(conn->GetID(), conn));
-	conn->m_funcProcRecvMsg = m_serverApp->m_delegateMsgRecv;
 
 	MsgMarkClient msg;
 	msg.m_markId = conn->GetID();

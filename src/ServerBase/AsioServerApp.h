@@ -14,10 +14,6 @@ public:
 	AsioServerApp();
 	~AsioServerApp();
 
-	DelegateOnConnected m_delegateConnected;
-	DelegateOnConnClosed m_delegateConnClosed;
-	DelegateMsgRecv m_delegateMsgRecv;
-
 	void AppStart(int port, int threadCount);
 	void StartAccept();
 	void HandleAccept(AsioTcpConnection* conn, const boost::system::error_code& err);
@@ -28,5 +24,4 @@ private:
 
 	std::vector<AsioTcpConnection*>		m_connList;
 	std::vector<boost::thread*>			m_workThreads;
-
 };

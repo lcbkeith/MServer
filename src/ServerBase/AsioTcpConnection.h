@@ -12,7 +12,6 @@ using namespace boost::asio;
 class AsioTcpConnection
 {
 public:
-	boost::function<bool(AsioTcpConnection*, NetMessage*)>	m_funcProcRecvMsg;
 	AsioTcpConnection(io_service& io_service);
 	~AsioTcpConnection();
 	int64 GetID() { return m_connID; }
@@ -28,11 +27,11 @@ public:
 	bool GetMessage(NetMessage* msg);
 	
 	ip::tcp::socket& GetSocket();
+	boost::function<bool(AsioTcpConnection*, NetMessage*)> m_funcProcRecvMsg;
 private:
 	ip::tcp::socket m_socket;
 	char m_recvBuffer[4 * 1024];
 	char m_sendBuffer[4 * 1024];
-
 
 	MessageQueue* m_inQueue;
 	MessageQueue* m_outQueue;
