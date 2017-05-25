@@ -8,6 +8,7 @@ AsioTcpConnection::AsioTcpConnection(io_service& io_service)
 	, m_close(false)
 	, m_isRecving(false)
 	, m_isSending(false)
+	, m_stoped(false)
 {
 	static MemoryPool pool;
 	m_inQueue = new MessageQueue(&pool);
@@ -16,7 +17,10 @@ AsioTcpConnection::AsioTcpConnection(io_service& io_service)
 
 AsioTcpConnection::~AsioTcpConnection()
 {
-
+	delete m_inQueue;
+	m_inQueue = nullptr;
+	delete m_outQueue;
+	m_outQueue = nullptr;
 }
 
 void AsioTcpConnection::Start()
@@ -24,6 +28,8 @@ void AsioTcpConnection::Start()
 	m_socket.set_option(boost::asio::socket_base::linger(true, 0));				//如果为true，套接字会在有未发送数据的情况下挂起close()
 	m_socket.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));	//如果为true，套接字能绑定到一个已用的地址(TODO 啥意思?)
 
+	m_close = false;
+	m_stoped = false;
 	m_isRecving = true;
 	char* buf = m_recvBuffer + m_unHandledSize;
 	int size = sizeof(m_recvBuffer) - m_unHandledSize;
@@ -37,6 +43,13 @@ void AsioTcpConnection::Update()
 {
 	//close check return
 	ForceSend();
+}
+
+void AsioTcpConnection::Close()
+{
+	m_socket.shutdown(ip::tcp::socket::shutdown_both);
+	m_socket.close();
+	m_stoped = true;
 }
 
 void AsioTcpConnection::HandleRead(const boost::system::error_code& error, size_t bytesTransfered)
@@ -91,8 +104,6 @@ void AsioTcpConnection::OnReceiveData(int size)
 			break;
 		}
 	}
-	
-	
 }
 
 void AsioTcpConnection::Send(NetMessage& msg)
@@ -131,6 +142,12 @@ bool AsioTcpConnection::GetMessage(NetMessage* msg)
 		return true;
 	}
 	return false;
+}
+
+void AsioTcpConnection::ReqClose()
+{
+	m_close = true;
+	m_isRecving = false;
 }
 
 boost::asio::ip::tcp::socket& AsioTcpConnection::GetSocket()

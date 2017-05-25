@@ -2,23 +2,26 @@
 #include <boost/thread/detail/thread.hpp>
 AsioClientApp::AsioClientApp()
 	:m_sharedSvc(false)
+	, m_autoReconnect(true)
+	, m_isConnecting(false)
 {
 }
 
 AsioClientApp::~AsioClientApp()
 {
+	delete m_resolver;
+	m_resolver = nullptr;
+	delete m_conn;
+	m_conn = nullptr;
+
 	if (!m_sharedSvc)
 	{
 		delete m_ioService;
 		m_ioService = nullptr;
 	}
-	delete m_resolver;
-	m_resolver = nullptr;
-	delete m_conn;
-	m_conn = nullptr;
 }
 
-void AsioClientApp::Start(const char* host, int port, int threadCount)
+void AsioClientApp::Start(const char* host, int port)
 {
 	if (m_ioService == nullptr)
 	{
@@ -29,27 +32,30 @@ void AsioClientApp::Start(const char* host, int port, int threadCount)
 	m_rsvIter = m_resolver->resolve(*m_query);
 
 	m_conn = new AsioTcpConnection(*m_ioService);
-
-	boost::asio::async_connect(m_conn->GetSocket(), m_rsvIter, boost::bind(&AsioClientApp::OnConn, this, m_conn, boost::asio::placeholders::error));
-
-	for (int idx = 0; idx < threadCount; idx++)
-	{
-		boost::thread* thread = new boost::thread(boost::bind(&boost::asio::io_service::run, m_ioService));
-		m_workThreads.push_back(thread);
-	}
+	StartConnect();
 }
 
 void AsioClientApp::OnConn(AsioTcpConnection* conn, const boost::system::error_code& err)
 {
+	m_isConnecting = false;
+	if (!conn->GetSocket().is_open())
+	{
+		if (m_autoReconnect)
+		{
+			StartConnect();
+		}
+		return;
+	}
 	if (err)
 	{
-		//reconn config
-		boost::asio::async_connect(conn->GetSocket(), m_rsvIter,
-			boost::bind(&AsioClientApp::OnConn, this, conn, boost::asio::placeholders::error));
+		m_conn->GetSocket().close();
+		if (m_autoReconnect)
+		{
+			StartConnect();
+		}
 	}
 	else
 	{
-		//std::cout << "AsioClientApp::OnConn,thread" << boost::this_thread::get_id()<< ",ip:" << conn->GetSocket().remote_endpoint().address() << std::endl;
 		conn->m_funcProcRecvMsg = m_delegateMsgRecv;
 		conn->Start();
 		if (m_delegateConnected)
@@ -67,12 +73,22 @@ void AsioClientApp::SetIOService(io_service& ioService)
 
 void AsioClientApp::Tick()
 {
-	m_conn->Update();
-	if (m_workThreads.empty())
+	m_ioService->poll_one();
+	if (m_conn->IsStoped())
 	{
-		m_ioService->poll_one();
+		StartConnect();
+		return;
+	}
+	if (m_conn->IsClose())
+	{
+		if (m_conn->CanClose())
+		{
+			OnCloseConnection(m_conn);
+		}
+		return;
 	}
 
+	m_conn->Update();
 	char msg_copy_buffer[32 * 1024];
 	NetMessage* recv_msg = (NetMessage*)&msg_copy_buffer[0];
 	while (m_conn->GetMessage(recv_msg))
@@ -81,6 +97,17 @@ void AsioClientApp::Tick()
 		{
 			break;
 		}
+	}
+}
+
+void AsioClientApp::StartConnect()
+{
+	if (!m_isConnecting)
+	{
+		m_isConnecting = true;
+		std::cout << "Client StartConnect " << std::endl;
+		//m_conn->GetSocket().async_connect(m_rsvIter->endpoint(), boost::bind(&AsioClientApp::OnConn, this, m_conn, boost::asio::placeholders::error));
+		boost::asio::async_connect(m_conn->GetSocket(), m_rsvIter, boost::bind(&AsioClientApp::OnConn, this, m_conn, boost::asio::placeholders::error));
 	}
 }
 

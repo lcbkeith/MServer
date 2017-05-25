@@ -18,6 +18,7 @@ public:
 
 	void Start();
 	void Update();
+	void Close();
 	void HandleRead(const boost::system::error_code& error, size_t bytesTransfered);
 	void HandleWrite(const boost::system::error_code& error, size_t bytesTransfered);
 
@@ -25,6 +26,11 @@ public:
 	void Send(NetMessage& msg);
 	void ForceSend();
 	bool GetMessage(NetMessage* msg);
+
+	void ReqClose();
+	bool IsClose() { return m_close; }
+	bool CanClose() { return !m_isRecving && !m_isSending; }
+	bool IsStoped() { return m_stoped; }
 	
 	ip::tcp::socket& GetSocket();
 	boost::function<bool(AsioTcpConnection*, NetMessage*)> m_funcProcRecvMsg;
@@ -41,6 +47,7 @@ private:
 	int64 m_connID;
 	static int64 m_connAllocID;
 
+	bool m_stoped;
 	bool m_close;
 	bool m_isRecving;
 	bool m_isSending;

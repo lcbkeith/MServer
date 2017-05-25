@@ -39,9 +39,12 @@ bool MiniClient::OnServerMsgRecv(AsioTcpConnection* conn, NetMessage* msg)
 		MsgMarkClient* castMsg = (MsgMarkClient*)msg;
 		m_serverMarkId = castMsg->m_markId;
 
+		std::cout << "MsgMarkClient :" << m_serverMarkId << std::endl;
 		MsgClientResponse newMsg;
 		newMsg.m_responseId = m_serverMarkId;
 		SendMessage(newMsg);
+		m_clientApp->GetConnect()->ReqClose();
+		boost::this_thread::sleep(boost::posix_time::milliseconds(10000));
 	}
 	break;
 	default:

@@ -6,7 +6,7 @@ template<class T>
 class CircleDeque
 {
 public:
-	CircleDeque(size_t initSize = 512)
+	CircleDeque(size_t initSize = 4)
 		:m_head(0),
 		m_tail(0),
 		m_dataSize(0)

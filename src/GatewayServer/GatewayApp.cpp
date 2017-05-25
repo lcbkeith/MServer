@@ -34,6 +34,7 @@ bool GatewayApp::OnClientMsgRecv(AsioTcpConnection* conn, NetMessage* msg)
 		{
 			std::cout << "not equal fuck!" << std::endl;
 		}
+		std::cout << "MsgClientResponse :" << resId << std::endl;
 	}
 		break;
 	default:

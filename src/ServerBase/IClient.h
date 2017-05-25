@@ -7,7 +7,7 @@ public:
 	virtual ~IClient();
 
 	virtual void Tick();
-	void Start(const char* host, int port, int threadCount = 0);
+	void Start(const char* host, int port);
 	virtual void OnStarted() {}
 
 	virtual void OnServerConnected(AsioTcpConnection* conn) = 0;

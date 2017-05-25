@@ -13,19 +13,20 @@ public:
 	AsioClientApp();
 	virtual ~AsioClientApp();
 
-	virtual void Start(const char* host, int port, int threadCount = 0);
+	virtual void Start(const char* host, int port);
 	void OnConn(AsioTcpConnection* conn, const boost::system::error_code& err);
 	void SetIOService(io_service& ioService);
 	void Tick();
 	AsioTcpConnection* GetConnect() { return m_conn; }
+	void StartConnect();
 protected:
 private:
-	bool m_sharedSvc;
-	io_service* m_ioService;
-	ip::tcp::resolver::query* m_query;
-	ip::tcp::resolver* m_resolver;
+	bool						m_sharedSvc; 
+	bool						m_autoReconnect;
+	bool						m_isConnecting;
+	io_service*					m_ioService;
+	ip::tcp::resolver::query*	m_query;
+	ip::tcp::resolver*			m_resolver;
 	ip::tcp::resolver::iterator m_rsvIter;
-
-	std::vector<boost::thread*> m_workThreads;
-	AsioTcpConnection* m_conn;
+	AsioTcpConnection*			m_conn;
 };

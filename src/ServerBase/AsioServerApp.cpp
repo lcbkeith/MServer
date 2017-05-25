@@ -82,9 +82,23 @@ void AsioServerApp::Tick()
 	NetMessage* recv_msg = (NetMessage*)&msg_copy_buffer[0];
 
 	auto iter = m_connList.begin();
-	for (; iter!= m_connList.end(); iter++)
+	for (; iter!= m_connList.end();)
 	{
 		AsioTcpConnection* conn = *iter;
+		if (conn->IsClose())
+		{
+			if (conn->CanClose())
+			{
+				OnCloseConnection(conn);
+				iter = m_connList.erase(iter);
+			}
+			else
+			{
+				iter++;
+			}
+			continue;
+		}
+		conn->Update();
 		while (conn->GetMessage(recv_msg))
 		{
 			if (!conn->m_funcProcRecvMsg(conn, recv_msg))
@@ -92,5 +106,6 @@ void AsioServerApp::Tick()
 				break;
 			}
 		}
+		iter++;
 	}
 }
