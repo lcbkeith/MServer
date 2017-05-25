@@ -4,7 +4,10 @@
 int main()
 {
 	JsonConfig config;
-	assert(config.Parse("GatewayServer.setting"));
+	if (!config.Parse("GatewayServer.setting"))
+	{
+		return 0;
+	}
 	int port = config.GetInt("port");
 
 	GatewayApp* gateway = new GatewayApp;

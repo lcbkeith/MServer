@@ -105,7 +105,7 @@ void AsioClientApp::StartConnect()
 	if (!m_isConnecting)
 	{
 		m_isConnecting = true;
-		std::cout << "Client StartConnect " << std::endl;
+		//std::cout << "Client StartConnect : " << m_conn->GetID() << std::endl;
 		//m_conn->GetSocket().async_connect(m_rsvIter->endpoint(), boost::bind(&AsioClientApp::OnConn, this, m_conn, boost::asio::placeholders::error));
 		boost::asio::async_connect(m_conn->GetSocket(), m_rsvIter, boost::bind(&AsioClientApp::OnConn, this, m_conn, boost::asio::placeholders::error));
 	}

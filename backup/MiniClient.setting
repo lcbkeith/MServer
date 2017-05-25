@@ -1,4 +1,6 @@
 {
     "GateIP" : "127.0.0.1",
-    "port" : 10234
+    "port" : 10234,
+    "ThreadCount" : 6,
+    "ClientPerThread" : 1000
 }

@@ -58,10 +58,9 @@ void AsioServerApp::HandleAccept(AsioTcpConnection* conn, const boost::system::e
 	else
 	{
 		//Set event funcs;
-		std::cout << "HandleAccept ,thread:" << boost::this_thread::get_id()<< ",ip:" << conn->GetSocket().remote_endpoint().address() << std::endl;
+		AutoLocker locker(m_connLock);
 		m_connList.push_back(conn);
-		std::cout << "count" << m_connList.size() << std::endl;
-		std::cout << "------------" << std::endl;
+
 		conn->m_funcProcRecvMsg = m_delegateMsgRecv;
 		conn->Start();
 		if (m_delegateConnected)
@@ -81,6 +80,7 @@ void AsioServerApp::Tick()
 	char msg_copy_buffer[32 * 1024];
 	NetMessage* recv_msg = (NetMessage*)&msg_copy_buffer[0];
 
+	AutoLocker locker(m_connLock);
 	auto iter = m_connList.begin();
 	for (; iter!= m_connList.end();)
 	{
@@ -90,6 +90,8 @@ void AsioServerApp::Tick()
 			if (conn->CanClose())
 			{
 				OnCloseConnection(conn);
+				delete conn;
+				conn = NULL;
 				iter = m_connList.erase(iter);
 			}
 			else

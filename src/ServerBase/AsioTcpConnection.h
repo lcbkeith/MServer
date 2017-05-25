@@ -36,11 +36,13 @@ public:
 	boost::function<bool(AsioTcpConnection*, NetMessage*)> m_funcProcRecvMsg;
 private:
 	ip::tcp::socket m_socket;
-	char m_recvBuffer[4 * 1024];
-	char m_sendBuffer[4 * 1024];
+	char m_recvBuffer[64 * 1024];
+	char m_sendBuffer[64 * 1024];
 
 	MessageQueue* m_inQueue;
 	MessageQueue* m_outQueue;
+
+	std::mutex m_sendLock;
 
 	int m_sendingBytes;
 	int m_unHandledSize;

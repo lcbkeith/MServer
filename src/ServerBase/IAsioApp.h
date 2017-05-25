@@ -18,8 +18,6 @@ public:
 			m_delegateConnClosed(conn);
 		}
 		conn->Close();
-// 		delete conn;
-// 		conn = NULL;
 	}
 protected:
 	DelegateOnConnected			m_delegateConnected;

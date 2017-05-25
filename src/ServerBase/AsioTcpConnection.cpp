@@ -73,9 +73,14 @@ void AsioTcpConnection::HandleRead(const boost::system::error_code& error, size_
 
 void AsioTcpConnection::HandleWrite(const boost::system::error_code& error, size_t bytesTransfered)
 {
-	memcpy(m_sendBuffer, m_sendBuffer + bytesTransfered, m_sendingBytes - bytesTransfered);
+	{
+		AutoLocker locker(m_sendLock);
+		memcpy(m_sendBuffer, m_sendBuffer + bytesTransfered, m_sendingBytes - bytesTransfered);
+		m_sendingBytes -= bytesTransfered;
+		m_isSending = false;
+	}
+	
 	ForceSend();
-	m_isSending = false;
 	if (error)
 	{
 		m_close = true;
@@ -154,5 +159,3 @@ boost::asio::ip::tcp::socket& AsioTcpConnection::GetSocket()
 {
 	return m_socket;
 }
-
-

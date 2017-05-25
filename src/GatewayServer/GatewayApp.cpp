@@ -30,10 +30,8 @@ bool GatewayApp::OnClientMsgRecv(AsioTcpConnection* conn, NetMessage* msg)
 	{
 		MsgClientResponse* response = (MsgClientResponse*)msg;
 		int64 resId = response->m_responseId;
-		if (resId != conn->GetID())
-		{
-			std::cout << "not equal fuck!" << std::endl;
-		}
+		assert(resId == conn->GetID());
+		
 		std::cout << "MsgClientResponse :" << resId << std::endl;
 	}
 		break;
@@ -52,24 +50,4 @@ void GatewayApp::SendMessage(int64 connId, NetMessage& message)
 	}
 	AsioTcpConnection* conn = iter->second;
 	conn->Send(message);
-}
-
-void GatewayApp::Update()
-{
-	IServer::Tick();
-	char msg_copy_buffer[32 * 1024];
-	NetMessage* msg = (NetMessage*)msg_copy_buffer;
-	auto iter = conns.begin();
-	for (; iter!= conns.end(); iter++)
-	{
-		AsioTcpConnection* conn = iter->second;
-		while (conn->GetMessage(msg))
-		{
-			if (!OnClientMsgRecv(conn, msg))
-			{
-				break;
-			}
-		}
-	}
-	
 }

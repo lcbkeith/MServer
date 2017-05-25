@@ -30,4 +30,5 @@ struct MsgClientResponse : public NetMessage
 		this->MessageId = 2;
 	}
 	int64 m_responseId;
+	char m_data[32 * 1024];
 };

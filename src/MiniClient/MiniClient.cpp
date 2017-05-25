@@ -10,24 +10,14 @@ MiniClient::~MiniClient()
 
 }
 
-void MiniClient::Update()
-{
-	IClient::Tick();
-}
-
-void MiniClient::OnStarted()
-{
-	
-}
-
 void MiniClient::OnServerConnected(AsioTcpConnection* conn)
 {
-	std::cout << "AsioClientApp::Connected,thread:" << boost::this_thread::get_id() << ",ip:" << conn->GetSocket().remote_endpoint().address() << std::endl;
+	std::cout << "AsioClientApp::Connected,thread:" << boost::this_thread::get_id() << std::endl;
 }
 
 void MiniClient::OnConnectionClosed(AsioTcpConnection* conn)
 {
-	std::cout << "AsioClientApp::Closed,thread:" << boost::this_thread::get_id() << ",ip:" << conn->GetSocket().remote_endpoint().address() << std::endl;
+	std::cout << "ID" << GetID() << ",AsioClientApp::Closed,thread:" << boost::this_thread::get_id() << std::endl;
 }
 
 bool MiniClient::OnServerMsgRecv(AsioTcpConnection* conn, NetMessage* msg)
@@ -40,11 +30,14 @@ bool MiniClient::OnServerMsgRecv(AsioTcpConnection* conn, NetMessage* msg)
 		m_serverMarkId = castMsg->m_markId;
 
 		std::cout << "MsgMarkClient :" << m_serverMarkId << std::endl;
-		MsgClientResponse newMsg;
-		newMsg.m_responseId = m_serverMarkId;
-		SendMessage(newMsg);
+		for (int index = 0; index < 10 ; index++)
+		{
+			MsgClientResponse newMsg;
+			newMsg.m_responseId = m_serverMarkId;
+			SendMessage(newMsg);
+		}
 		m_clientApp->GetConnect()->ReqClose();
-		boost::this_thread::sleep(boost::posix_time::milliseconds(10000));
+		//boost::this_thread::sleep(boost::posix_time::milliseconds(3000));
 	}
 	break;
 	default:

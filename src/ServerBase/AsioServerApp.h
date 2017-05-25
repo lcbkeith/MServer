@@ -24,4 +24,6 @@ private:
 
 	std::vector<AsioTcpConnection*>		m_connList;
 	std::vector<boost::thread*>			m_workThreads;
+
+	std::mutex m_connLock;
 };

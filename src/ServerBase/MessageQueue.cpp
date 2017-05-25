@@ -40,7 +40,7 @@ bool MessageQueue::PopMessage(NetMessage* netMessage)
 	NetMessage* headMsg = m_queue.Front();
 	if (nullptr != headMsg)
 	{
-		m_queue.PopBack();
+		m_queue.PopFront();
 		memcpy(netMessage, headMsg, headMsg->Length);
 		m_pool->free(headMsg, headMsg->Length);
 		return true;

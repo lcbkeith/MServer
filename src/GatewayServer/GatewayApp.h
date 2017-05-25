@@ -12,7 +12,6 @@ protected:
 	virtual bool OnClientMsgRecv(AsioTcpConnection* conn, NetMessage* msg) override;
 
 	void SendMessage(int64 connId, NetMessage& message);
-	void Update();
 private:
 	std::map<int64, AsioTcpConnection*> conns;
 };
