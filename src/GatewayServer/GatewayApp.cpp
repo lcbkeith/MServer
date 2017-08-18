@@ -50,4 +50,5 @@ void GatewayApp::SendMessage(int64 connId, NetMessage& message)
 	}
 	AsioTcpConnection* conn = iter->second;
 	conn->Send(message);
+	std::cout << "GatewayApp::SendMessage :" << std::endl;
 }

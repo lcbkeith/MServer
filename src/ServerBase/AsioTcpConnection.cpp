@@ -1,4 +1,5 @@
 #include "AsioTcpConnection.h"
+#include <boost/thread/thread.hpp>
 int64 AsioTcpConnection::m_connAllocID = 1024;
 AsioTcpConnection::AsioTcpConnection(io_service& io_service)
 	: m_socket(io_service)
@@ -73,6 +74,7 @@ void AsioTcpConnection::HandleRead(const boost::system::error_code& error, size_
 
 void AsioTcpConnection::HandleWrite(const boost::system::error_code& error, size_t bytesTransfered)
 {
+	std::cout << "HandleWrite, thread = " << boost::this_thread::get_id() << std::endl;
 	{
 		AutoLocker locker(m_sendLock);
 		memcpy(m_sendBuffer, m_sendBuffer + bytesTransfered, m_sendingBytes - bytesTransfered);
@@ -121,6 +123,7 @@ void AsioTcpConnection::Send(NetMessage& msg)
 
 void AsioTcpConnection::ForceSend()
 {
+	std::cout << "ForceSend, thread = " << boost::this_thread::get_id() << std::endl;
 	if (m_outQueue->Empty())
 	{
 		return;
