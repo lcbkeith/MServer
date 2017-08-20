@@ -123,6 +123,10 @@ void AsioTcpConnection::Send(NetMessage& msg)
 
 void AsioTcpConnection::ForceSend()
 {
+	if (IsClose())
+	{
+		return;
+	}
 	if (m_outQueue->Empty())
 	{
 		return;
