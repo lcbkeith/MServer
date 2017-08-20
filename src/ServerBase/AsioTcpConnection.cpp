@@ -123,7 +123,6 @@ void AsioTcpConnection::Send(NetMessage& msg)
 
 void AsioTcpConnection::ForceSend()
 {
-	std::cout << "ForceSend, thread = " << boost::this_thread::get_id() << std::endl;
 	if (m_outQueue->Empty())
 	{
 		return;

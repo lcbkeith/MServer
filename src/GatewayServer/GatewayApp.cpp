@@ -7,7 +7,7 @@ void GatewayApp::OnStarted()
 
 void GatewayApp::OnClientConnected(AsioTcpConnection* conn)
 {
-	std::cout << " GatewayApp::OnClientConnected:" << conn->GetID() << std::endl;
+	std::cout << " ***GatewayApp::OnClientConnected:" << conn->GetID() << std::endl;
 	conns.insert(std::make_pair(conn->GetID(), conn));
 
 	MsgMarkClient msg;
@@ -17,7 +17,7 @@ void GatewayApp::OnClientConnected(AsioTcpConnection* conn)
 
 void GatewayApp::OnClientClosed(AsioTcpConnection* conn)
 {
-	std::cout << " GatewayApp::OnClientClosed:" << conn->GetID() << std::endl;
+	std::cout << " ***GatewayApp::OnClientClosed:" << conn->GetID() <<"\n"<< std::endl;
 	conns.erase(conn->GetID());
 }
 
@@ -48,7 +48,7 @@ void GatewayApp::SendMessage(int64 connId, NetMessage& message)
 	{
 		return;
 	}
+	std::cout << "GatewayApp::SendMessage :" << std::endl;
 	AsioTcpConnection* conn = iter->second;
 	conn->Send(message);
-	std::cout << "GatewayApp::SendMessage :" << std::endl;
 }
