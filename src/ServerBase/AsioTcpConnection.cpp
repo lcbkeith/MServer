@@ -50,11 +50,9 @@ void AsioTcpConnection::Close()
 {
 	boost::system::error_code ec;
 	m_socket.shutdown(ip::tcp::socket::shutdown_both,ec);
-	if (ec) 
-		std::cout <<"close1:" <<ec.message().c_str() << std::endl;
+	if (ec) {}
 	m_socket.close(ec);
-	if (ec) 
-		std::cout << "close1:" << ec.message().c_str() << std::endl;
+	if (ec) {}
 	m_stoped = true;
 }
 
