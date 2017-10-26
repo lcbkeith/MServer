@@ -1,5 +1,5 @@
 project(GatewayServer)
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 2.8)
 
 include_directories(${PROJECT_BINARY_DIR}/../../include)
 aux_source_directory(. SRC_LIST)
